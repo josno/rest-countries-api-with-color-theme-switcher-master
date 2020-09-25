@@ -8,7 +8,7 @@ import Header from "./Components/Header";
 
 const App = () => {
 	return (
-		<AppStyles>
+		<AppStyles darkModeOn={false}>
 			<Header />
 			<Switch>
 				<Route exact path='/' component={CountryListPage} />
@@ -23,7 +23,9 @@ const App = () => {
 };
 
 const AppStyles = styled.main`
-	background-color: hsl(0, 0%, 98%);
+	background-color: ${(props) =>
+		props.darkModeOn ? `hsl(207, 26%, 17%)` : `hsl(0, 0%, 98%)`};
+	color: ${(props) => (props.darkModeOn ? `white` : `hsl(200, 15%, 8%)`)};
 `;
 
 export default App;

@@ -26,8 +26,10 @@ const CountryListPage = (props) => {
 	}, []);
 	return (
 		<CountryListPageStyles>
+			{error && <p>{error}</p>}
 			<ul className='flex-center'>
 				{countries.length > 0 &&
+					!error &&
 					countries.map((c) => {
 						return (
 							<CountryItem
@@ -45,7 +47,6 @@ const CountryListPage = (props) => {
 };
 
 const CountryListPageStyles = styled.div`
-	color: hsl(200, 15%, 8%);
 	font-size: 0.875rem;
 	width: 100%;
 	height: 100%;
@@ -54,12 +55,20 @@ const CountryListPageStyles = styled.div`
 		height: 100%;
 		padding: 0px;
 		flex-direction: column;
+		margin: 0px;
 	}
 
 	.flex-center {
 		display: flex;
 		justify-content: center;
 		align-items: center;
+	}
+
+	@media (min-width: 748px) {
+		ul {
+			flex-direction: row;
+			flex-wrap: wrap;
+		}
 	}
 `;
 
