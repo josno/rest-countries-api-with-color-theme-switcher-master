@@ -11,6 +11,7 @@ const CountryListPage = ({ search, filter }) => {
 		try {
 			async function getData() {
 				const res = await fetch(
+					//I only need name, capital, region, population, and flag
 					"https://restcountries.eu/rest/v2/all?fields=name;capital;region;population;flag"
 				);
 
@@ -24,6 +25,18 @@ const CountryListPage = ({ search, filter }) => {
 			setError(`Can't pull right now. Try again later.`);
 		}
 	}, []);
+
+	const filterName = (a, val) => {
+		//Format strings to lowercase so we can normalize both values
+		const searchValue = val.toLowerCase();
+
+		//Use the slice method to match the length of the search value
+		const check = a.toLowerCase().slice(0, searchValue.length);
+
+		//If both values match it could be what the person is looking for so return it
+		return check === searchValue;
+	};
+
 	return (
 		<CountryListPageStyles>
 			{error && <p>{error}</p>}
@@ -34,15 +47,7 @@ const CountryListPage = ({ search, filter }) => {
 						.filter((a) => {
 							return a.name.toLowerCase().indexOf(search.toLowerCase()) !== -1;
 						})
-						.filter((a) => {
-							if (!filter) {
-								return a;
-							} else {
-								return (
-									a.region.toLowerCase().indexOf(filter.toLowerCase()) !== -1
-								);
-							}
-						})
+						.filter((a) => filterName(a.name, search))
 						.map((c, index) => {
 							return (
 								<CountryItem
