@@ -26,27 +26,40 @@ const CountryListPage = (props) => {
 	}, []);
 	return (
 		<CountryListPageStyles>
-			<ul>
-				{countries.length > 0 && (
-					<CountryItem
-						flag={countries[0].flag}
-						name={countries[0].name}
-						region={countries[0].region}
-						capital={countries[0].capital}
-						population={countries[0].population}
-					/>
-				)}
+			<ul className='flex-center'>
+				{countries.length > 0 &&
+					countries.map((c) => {
+						return (
+							<CountryItem
+								flag={c.flag}
+								name={c.name}
+								region={c.region}
+								capital={c.capital}
+								population={c.population}
+							/>
+						);
+					})}
 			</ul>
 		</CountryListPageStyles>
 	);
 };
 
 const CountryListPageStyles = styled.div`
+	color: hsl(200, 15%, 8%);
+	font-size: 0.875rem;
 	width: 100%;
 	height: 100%;
 	ul {
 		width: 100%;
 		height: 100%;
+		padding: 0px;
+		flex-direction: column;
+	}
+
+	.flex-center {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 `;
 

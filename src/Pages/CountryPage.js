@@ -2,7 +2,7 @@ import React from "react";
 
 import styled from "styled-components";
 
-const CountryPage = ({ name, region, population, capital }) => {
+const CountryPage = (props) => {
 	return <CountryListPageStyles></CountryListPageStyles>;
 };
 
