@@ -1,17 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 
 import CountryListPage from "./Pages/CountryListPage";
 import CountryPage from "./Pages/CountryPage";
 import Header from "./Components/Header";
+import SearchFilterSection from "./Components/SearchBar";
+import CountryContext from "./CountryContext";
 
 const App = () => {
+	const [darkModeOn, setDarkMode] = useState(false);
+	const [filter, setFilter] = useState("");
+
+	const toggleMode = () => {
+		setDarkMode(!darkModeOn);
+	};
+
+	const updateFilter = (str) => {
+		setFilter(str);
+	};
+
 	return (
-		<AppStyles darkModeOn={false}>
-			<Header />
+		<AppStyles>
+			<Header toggleMode={() => toggleMode()} />
+			<SearchFilterSection updateFilter={(str) => updateFilter(str)} />
 			<Switch>
-				<Route exact path='/' component={CountryListPage} />
+				<Route
+					exact
+					path='/'
+					render={(routeProps) => (
+						<CountryListPage filter={filter} {...routeProps} />
+					)}
+				/>
 				<Route
 					exact
 					path='/:country'

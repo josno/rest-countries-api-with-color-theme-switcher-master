@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import styled from "styled-components";
 import Format from "../Utils/Format";
 
 const CountryItem = ({ name, region, population, capital, flag }) => {
+	// const darkMode = useContext(CountryContext.darkMode);
 	return (
-		<CountryItemStyles darkModeOn={false}>
+		<CountryItemStyles>
 			<div className='img-container'>
 				<img src={flag} alt={`${name}=flag`} />
 			</div>
-			<DetailContainer darkModeOn={false}>
+			<DetailContainer>
 				<h1>{name}</h1>
 				<ul className='details-list-container'>
 					<li>
@@ -34,9 +35,9 @@ const CountryItemStyles = styled.li`
 	border-radius: 10px;
 	box-shadow: ${(props) =>
 		props.darkModeOn ? "none" : "1px 2px 15px lightgrey"};
+
 	overflow: hidden;
 	width: 275px;
-	// height: 340px;
 
 	.img-container {
 		height: 150px;
@@ -46,6 +47,12 @@ const CountryItemStyles = styled.li`
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+	}
+
+	transition: all 0.1s ease-in-out;
+	:hover {
+		cursor: pointer;
+		transform: scale(1.05);
 	}
 `;
 

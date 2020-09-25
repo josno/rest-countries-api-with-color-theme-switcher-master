@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 
 import styled from "styled-components";
 import CountryItem from "../Components/CountryItem";
+import CountryContext from "../CountryContext";
 
-const CountryListPage = (props) => {
+const CountryListPage = ({ filter }) => {
 	const [countries, setCountriesList] = useState([]);
 	const [error, setError] = useState(null);
 
@@ -30,17 +31,22 @@ const CountryListPage = (props) => {
 			<ul className='flex-center'>
 				{countries.length > 0 &&
 					!error &&
-					countries.map((c) => {
-						return (
-							<CountryItem
-								flag={c.flag}
-								name={c.name}
-								region={c.region}
-								capital={c.capital}
-								population={c.population}
-							/>
-						);
-					})}
+					countries
+						.filter((a) => {
+							return a.name.toLowerCase().indexOf(filter.toLowerCase()) !== -1;
+						})
+						.map((c, index) => {
+							return (
+								<CountryItem
+									flag={c.flag}
+									key={index}
+									name={c.name}
+									region={c.region}
+									capital={c.capital}
+									population={c.population}
+								/>
+							);
+						})}
 			</ul>
 		</CountryListPageStyles>
 	);
@@ -50,7 +56,7 @@ const CountryListPageStyles = styled.div`
 	font-size: 0.875rem;
 	width: 100%;
 	height: 100%;
-	ul {
+	color: ul {
 		width: 100%;
 		height: 100%;
 		padding: 0px;
