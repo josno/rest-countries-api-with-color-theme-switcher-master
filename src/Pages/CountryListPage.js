@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 
 import styled from "styled-components";
 import CountryItem from "../Components/CountryItem";
-import CountryContext from "../CountryContext";
 
-const CountryListPage = ({ filter }) => {
+const CountryListPage = ({ search, filter }) => {
 	const [countries, setCountriesList] = useState([]);
 	const [error, setError] = useState(null);
 
@@ -33,7 +32,16 @@ const CountryListPage = ({ filter }) => {
 					!error &&
 					countries
 						.filter((a) => {
-							return a.name.toLowerCase().indexOf(filter.toLowerCase()) !== -1;
+							return a.name.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+						})
+						.filter((a) => {
+							if (!filter) {
+								return a;
+							} else {
+								return (
+									a.region.toLowerCase().indexOf(filter.toLowerCase()) !== -1
+								);
+							}
 						})
 						.map((c, index) => {
 							return (
@@ -55,8 +63,7 @@ const CountryListPage = ({ filter }) => {
 const CountryListPageStyles = styled.div`
 	font-size: 0.875rem;
 	width: 100%;
-	height: 100%;
-	color: ul {
+	ul {
 		width: 100%;
 		height: 100%;
 		padding: 0px;

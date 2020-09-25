@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 
 import styled from "styled-components";
 import { HiOutlineMoon, HiMoon } from "react-icons/hi";
@@ -25,6 +25,8 @@ const Header = ({ darkModeOn, toggleMode }) => {
 };
 
 const HeaderStyles = styled.div`
+	background: white;
+	box-shadow: 0px 4px 15px lightgrey;
 	padding: 20px;
 	display: flex;
 	justify-content: space-between;

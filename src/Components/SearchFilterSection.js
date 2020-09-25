@@ -6,7 +6,7 @@ import SearchBar from "./SearchBar";
 const SearchFilterSection = ({ updateFilter }) => {
 	return (
 		<SearchFilterSectionStyles>
-			<SearchBar updateFilter={updateFilter} />
+			<SearchBar updateFilter={() => updateFilter()} />
 		</SearchFilterSectionStyles>
 	);
 };

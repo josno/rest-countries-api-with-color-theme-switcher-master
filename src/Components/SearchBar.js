@@ -3,12 +3,12 @@ import React from "react";
 import styled from "styled-components";
 import { HiSearch } from "react-icons/hi";
 
-const SearchBar = ({ updateFilter }) => {
+const SearchBar = ({ updateSearch }) => {
 	return (
 		<SearchBarStyles>
 			<HiSearch className='search-icon' color={"#DCDCDC"} />
 			<input
-				onChange={(e) => updateFilter(e.target.value)}
+				onChange={(e) => updateSearch(e.target.value)}
 				type='text'
 				placeholder='Search for a country...'
 			/>
