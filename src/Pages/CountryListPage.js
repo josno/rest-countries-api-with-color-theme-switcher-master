@@ -1,11 +1,28 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import styled from "styled-components";
 import CountryItem from "../Components/CountryItem";
+import SearchBar from "../Components/SearchBar";
+import FilterBar from "../Components/FilterBar";
 
-const CountryListPage = ({ search, filter }) => {
+const CountryListPage = (props) => {
 	const [countries, setCountriesList] = useState([]);
 	const [error, setError] = useState(null);
+	const [search, setSearch] = useState("");
+	const [filter, setFilter] = useState("");
+
+	const updateSearch = (str) => {
+		setSearch(str);
+	};
+
+	const updateFilter = (val) => {
+		if (val === "None") {
+			setFilter("");
+		} else {
+			setFilter(val);
+		}
+	};
 
 	useEffect(() => {
 		try {
@@ -36,6 +53,10 @@ const CountryListPage = ({ search, filter }) => {
 
 	return (
 		<CountryListPageStyles>
+			<SearchFilterSection>
+				<SearchBar updateSearch={(str) => updateSearch(str)} />
+				<FilterBar getFilterValue={(str) => updateFilter(str)} />
+			</SearchFilterSection>
 			{error && <p>{error}</p>}
 			<ul className='flex-center'>
 				{countries.length > 0 &&
@@ -49,14 +70,15 @@ const CountryListPage = ({ search, filter }) => {
 						.filter((a) => filterName(a.name, search))
 						.map((c, index) => {
 							return (
-								<CountryItem
-									flag={c.flag}
-									key={index}
-									name={c.name}
-									region={c.region}
-									capital={c.capital}
-									population={c.population}
-								/>
+								<Link key={index} className='country-link' to={`${c.name}`}>
+									<CountryItem
+										flag={c.flag}
+										name={c.name}
+										region={c.region}
+										capital={c.capital}
+										population={c.population}
+									/>
+								</Link>
 							);
 						})}
 			</ul>
@@ -81,12 +103,33 @@ const CountryListPageStyles = styled.div`
 		align-items: center;
 	}
 
+	.country-link {
+		text-decoration: none;
+		color: inherit;
+	}
+
 	@media (min-width: 748px) {
 		ul {
 			flex-direction: row;
 			flex-wrap: wrap;
 		}
 	}
+`;
+
+const SearchFilterSection = styled.div`
+	padding-left: 5%;
+	padding-right: 5%;
+	padding-top: 40px;
+	width: 100%;
+	display: flex;
+	justify-content: flex-start;
+	flex-direction: column;
+
+	@media (min-width: 768px) {
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	} ;
 `;
 
 export default CountryListPage;
