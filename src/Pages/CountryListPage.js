@@ -27,13 +27,10 @@ const CountryListPage = ({ search, filter }) => {
 	}, []);
 
 	const filterName = (a, val) => {
-		//Format strings to lowercase so we can normalize both values
 		const searchValue = val.toLowerCase();
 
-		//Use the slice method to match the length of the search value
 		const check = a.toLowerCase().slice(0, searchValue.length);
 
-		//If both values match it could be what the person is looking for so return it
 		return check === searchValue;
 	};
 
@@ -45,7 +42,9 @@ const CountryListPage = ({ search, filter }) => {
 					!error &&
 					countries
 						.filter((a) => {
-							return a.name.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+							return !filter
+								? a
+								: a.region.toLowerCase() === filter.toLowerCase();
 						})
 						.filter((a) => filterName(a.name, search))
 						.map((c, index) => {
