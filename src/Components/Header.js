@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import styled from "styled-components";
-import { HiOutlineMoon, HiMoon } from "react-icons/hi";
 
-const Header = ({ darkModeOn, toggleMode }) => {
+import { HiOutlineMoon, HiMoon } from "react-icons/hi";
+import CountryContext from "../CountryContext";
+
+const Header = (props) => {
+	const { darkModeOn, setDarkMode } = useContext(CountryContext);
 	return (
-		<HeaderStyles>
+		<HeaderStyles darkModeOn={darkModeOn}>
 			<h1>Where in the world?</h1>
-			<button className='mode-toggle' onClick={() => toggleMode()}>
+			<button className='mode-toggle' onClick={() => setDarkMode(!darkModeOn)}>
 				{darkModeOn ? (
 					<>
 						<HiMoon size={"1.3em"} fill={"white"} strokeWidth={"0"} />
@@ -25,8 +28,11 @@ const Header = ({ darkModeOn, toggleMode }) => {
 };
 
 const HeaderStyles = styled.div`
-	background: white;
-	box-shadow: 0px 4px 15px lightgrey;
+	background-color: ${(props) =>
+		props.darkModeOn ? `hsl(209, 23%, 22%)` : "white"};
+	box-shadow: ${(props) =>
+		props.darkModeOn ? "0px 0px" : "0px 4px 15px lightgrey"};
+
 	padding: 20px;
 	display: flex;
 	justify-content: space-between;
@@ -50,6 +56,7 @@ const HeaderStyles = styled.div`
 
 	.mode-text {
 		margin-left: 10px;
+		color: ${(props) => (props.darkModeOn ? "white" : `hsl(209, 23%, 22%)`)};
 	}
 `;
 

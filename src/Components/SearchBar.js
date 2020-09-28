@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import styled from "styled-components";
 import { HiSearch } from "react-icons/hi";
+import CountryContext from "../CountryContext";
 
 const SearchBar = ({ updateSearch }) => {
+	const context = useContext(CountryContext);
 	return (
-		<SearchBarStyles>
+		<SearchBarStyles darkModeOn={context.darkModeOn}>
 			<HiSearch className='search-icon' color={"#DCDCDC"} />
 			<input
 				onChange={(e) => updateSearch(e.target.value)}
@@ -29,7 +31,8 @@ const SearchBarStyles = styled.div`
 		width: 100%;
 		border: 0px;
 		border-radius: 5px;
-		box-shadow: 3px 3px 12px lightgrey;
+		box-shadow: ${(props) =>
+			props.darkModeOn ? "0px 0px" : "3px 3px 12px lightgrey"};
 		padding: 20px 20px 20px 60px;
 	}
 

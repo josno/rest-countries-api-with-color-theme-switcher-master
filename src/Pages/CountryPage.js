@@ -63,8 +63,6 @@ const CountryPage = (props) => {
 			</li>
 		));
 
-	console.log(borderButtons);
-
 	return (
 		<CountryListPageStyles>
 			{error && <p>{error}</p>}

@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import styled from "styled-components";
-
+import CountryContext from "../CountryContext";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 const FilterBar = ({ getFilterValue }) => {
 	const [isListOpen, setIsListOpen] = useState(false);
 	const [filterLabel, setFilterLabel] = useState("Filter By Region");
+	const context = useContext(CountryContext);
 
 	const regionList = [
 		"Africa",
@@ -26,7 +27,7 @@ const FilterBar = ({ getFilterValue }) => {
 	};
 
 	return (
-		<DropDownStyles>
+		<DropDownStyles darkModeOn={context.darkModeOn}>
 			<div
 				className='list-text list-label list-actions'
 				onClick={() => setIsListOpen(!isListOpen)}
@@ -61,8 +62,10 @@ const DropDownStyles = styled.div`
 	border: 0px;
 	background: white;
 	border-radius: 5px;
-	box-shadow: 1px 2px 15px lightgrey;
+	box-shadow: ${(props) =>
+		props.darkModeOn ? "0px 0px" : "3px 3px 12px lightgrey"};
 	position: relative;
+	color: hsl(209, 23%, 22%);
 	.list-label {
 		position: relative;
 		z-index: 1;

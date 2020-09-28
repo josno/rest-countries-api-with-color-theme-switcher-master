@@ -1,9 +1,8 @@
 import React from "react";
 
 const CountryContext = React.createContext({
-	darkMode: "",
-	setFilter: () => {},
-	filter: "",
+	darkModeOn: false,
+	setDarkMode: () => {},
 });
 
 export default CountryContext;

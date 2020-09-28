@@ -5,34 +5,30 @@ import styled from "styled-components";
 import CountryListPage from "./Pages/CountryListPage";
 import CountryPage from "./Pages/CountryPage";
 import Header from "./Components/Header";
+import CountryContext from "./CountryContext";
 
 const App = () => {
 	const [darkModeOn, setDarkMode] = useState(false);
-
-	const toggleMode = () => {
-		setDarkMode(!darkModeOn);
-	};
+	const value = { darkModeOn, setDarkMode };
 
 	return (
-		<AppStyles>
-			<Header toggleMode={() => toggleMode()} />
-			{/* <SearchFilterSection>
-				<SearchBar updateSearch={(str) => updateSearch(str)} />
-				<FilterBar getFilterValue={(str) => updateFilter(str)} />
-			</SearchFilterSection> */}
-			<Switch>
-				<Route
-					exact
-					path='/'
-					render={(routeProps) => <CountryListPage {...routeProps} />}
-				/>
-				<Route
-					exact
-					path='/:country'
-					render={(routeProps) => <CountryPage {...routeProps} />}
-				/>
-			</Switch>
-		</AppStyles>
+		<CountryContext.Provider value={value}>
+			<AppStyles darkModeOn={darkModeOn}>
+				<Header />
+				<Switch>
+					<Route
+						exact
+						path='/'
+						render={(routeProps) => <CountryListPage {...routeProps} />}
+					/>
+					<Route
+						exact
+						path='/:country'
+						render={(routeProps) => <CountryPage {...routeProps} />}
+					/>
+				</Switch>
+			</AppStyles>
+		</CountryContext.Provider>
 	);
 };
 
