@@ -57,13 +57,13 @@ const CountryPage = (props) => {
 		props.history.goBack();
 	};
 
-	const borderButtons =
-		country.borders &&
-		country.borders.map((country, index) => (
-			<BorderButtons darkModeOn={context.darkModeOn} key={index}>
-				<Link to={`/${country}`}>{country}</Link>
-			</BorderButtons>
-		));
+	const borderButtons = country.borders
+		? country.borders.map((country, index) => (
+				<BorderButtons darkModeOn={context.darkModeOn} key={index}>
+					<Link to={`/${country}`}>{country}</Link>
+				</BorderButtons>
+		  ))
+		: [];
 
 	return (
 		<CountryListPageStyles>
@@ -116,8 +116,14 @@ const CountryPage = (props) => {
 						</ul>
 
 						<ul className='bottom-details'>
-							<span className='bold'>Border Countries:</span>
-							<div className='button-container'>{borderButtons}</div>
+							{borderButtons.length === 0 ? (
+								`No other countries border ${country.name}`
+							) : (
+								<>
+									<span className='bold'>Border Countries:</span>
+									<div className='button-container'>{borderButtons}</div>
+								</>
+							)}
 						</ul>
 					</div>
 				</section>
