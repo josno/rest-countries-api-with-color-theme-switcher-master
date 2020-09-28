@@ -29,12 +29,15 @@ const CountryPage = (props) => {
 					`
 				);
 				const resjson = await res.json();
-				const borderNames = await getBorders(resjson[0].borders);
 				const languages = resjson[0].languages.map((l) => l.name).join(", ");
 				const currencies = resjson[0].currencies.map((l) => l.name).join(", ");
 				const population = Format.number(resjson[0].population);
 
-				resjson[0].borders = borderNames;
+				if (resjson[0].borders.length > 0) {
+					const borderNames = await getBorders(resjson[0].borders);
+					resjson[0].borders = borderNames;
+				}
+
 				resjson[0].languages = languages;
 				resjson[0].currencies = currencies;
 				resjson[0].population = population;
@@ -59,6 +62,8 @@ const CountryPage = (props) => {
 				<Link to={`/${country}`}>{country}</Link>
 			</li>
 		));
+
+	console.log(borderButtons);
 
 	return (
 		<CountryListPageStyles>
@@ -137,6 +142,7 @@ const CountryListPageStyles = styled.main`
 		height: 250px;
 		width: 90%;
 		margin: 0 auto;
+		max-width: 400px;
 	}
 
 	img {
@@ -190,6 +196,58 @@ const CountryListPageStyles = styled.main`
 					transform: scale(1.1);
 					cursor: pointer;
 				}
+			}
+		}
+	}
+
+	@media (min-width: 1200px) {
+		padding: 4% 5%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		.country-container {
+			display: flex;
+		}
+
+		.button-container {
+			padding-left: 0px;
+		}
+
+		.img-container {
+			height: 400px;
+			width: 600px;
+			margin: 0px;
+			max-width: none;
+		}
+
+		.details-container {
+			padding-top: 3%;
+			padding-left: 8%;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			grid-template-rows: 0.3fr 1.2fr 0.5fr;
+			gap: 1px 10px;
+			grid-template-areas:
+				"h1 h1"
+				"top-details middle-details"
+				"bottom-details bottom-details";
+
+			h1 {
+				grid-area: h1;
+				margin-top: 0px;
+			}
+			.top-details {
+				grid-area: top-details;
+				margin-top: 0px;
+			}
+			.middle-details {
+				grid-area: middle-details;
+				margin-top: 0px;
+			}
+			.bottom-details {
+				grid-area: bottom-details;
+				margin-top: 0px;
 			}
 		}
 	}
