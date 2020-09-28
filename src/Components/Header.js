@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { HiOutlineMoon, HiMoon } from "react-icons/hi";
@@ -9,7 +9,9 @@ const Header = (props) => {
 	const { darkModeOn, setDarkMode } = useContext(CountryContext);
 	return (
 		<HeaderStyles darkModeOn={darkModeOn}>
-			<h1>Where in the world?</h1>
+			<h1>
+				<Link to='/'>Where in the world?</Link>
+			</h1>
 			<button className='mode-toggle' onClick={() => setDarkMode(!darkModeOn)}>
 				{darkModeOn ? (
 					<>
@@ -38,6 +40,13 @@ const HeaderStyles = styled.div`
 	justify-content: space-between;
 	h1 {
 		font-size: 0.975rem;
+		a {
+			text-decoration: none;
+			color: inherit;
+		}
+		a:hover {
+			cursor: pointer;
+		}
 	}
 
 	.mode-toggle {
