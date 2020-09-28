@@ -33,7 +33,9 @@ const App = () => {
 };
 
 const AppStyles = styled.main`
+	min-height: 100vh;
 	height: 100%;
+
 	background-color: ${(props) =>
 		props.darkModeOn ? `hsl(207, 26%, 17%)` : `hsl(0, 0%, 98%)`};
 	color: ${(props) => (props.darkModeOn ? `white` : `hsl(200, 15%, 8%)`)};
