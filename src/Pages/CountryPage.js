@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 
 import { HiArrowLeft } from "react-icons/hi";
 import styled from "styled-components";
 import Format from "../Utils/Format";
+import CountryContext from "../CountryContext";
 
 const CountryPage = (props) => {
 	const [country, setCountry] = useState("");
 	const [error, setError] = useState(null);
+	const context = useContext(CountryContext);
 
 	async function getBorders(list) {
 		const formattedList = list.map((code) => code).join(";");
@@ -58,16 +60,19 @@ const CountryPage = (props) => {
 	const borderButtons =
 		country.borders &&
 		country.borders.map((country, index) => (
-			<li className='border-item' key={index}>
+			<BorderButtons darkModeOn={context.darkModeOn} key={index}>
 				<Link to={`/${country}`}>{country}</Link>
-			</li>
+			</BorderButtons>
 		));
 
 	return (
 		<CountryListPageStyles>
 			{error && <p>{error}</p>}
 			<section className='button-container'>
-				<BackButton onClick={() => handleGoBack()}>
+				<BackButton
+					darkModeOn={context.darkModeOn}
+					onClick={() => handleGoBack()}
+				>
 					<HiArrowLeft size={"1.5em"} />
 					<span className='back-text'>Back</span>
 				</BackButton>
@@ -165,36 +170,6 @@ const CountryListPageStyles = styled.main`
 		li {
 			list-style: none;
 		}
-
-		.bottom-details {
-			.button-container {
-				display: flex;
-				flex-wrap: wrap;
-				height: 100%;
-				padding-left: 0;
-				margin-top: 10px;
-			}
-			li a {
-				text-decoration: none;
-				color: inherit;
-			}
-
-			li {
-				border-radius: 5px;
-				box-shadow: 3px 3px 15px lightgrey;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				min-width: 100px;
-				padding: 5px;
-				margin: 0px 10px 10px 0px;
-				transition: all 0.1s ease-in-out;
-				:hover {
-					transform: scale(1.1);
-					cursor: pointer;
-				}
-			}
-		}
 	}
 
 	@media (min-width: 1200px) {
@@ -205,6 +180,8 @@ const CountryListPageStyles = styled.main`
 		justify-content: center;
 		.country-container {
 			display: flex;
+			align-items: center;
+			justify-content: center;
 		}
 
 		.button-container {
@@ -219,6 +196,7 @@ const CountryListPageStyles = styled.main`
 		}
 
 		.details-container {
+			max-width: 50%;
 			padding-top: 3%;
 			padding-left: 8%;
 			display: grid;
@@ -247,6 +225,11 @@ const CountryListPageStyles = styled.main`
 				margin-top: 0px;
 			}
 		}
+
+		.button-container {
+			display: flex;
+			flex-wrap: wrap;
+		}
 	}
 `;
 
@@ -257,14 +240,53 @@ const BackButton = styled.button`
 	font-size: 1.1em;
 	height: 50px;
 	width: 150px;
-	background: white;
+	color: ${(props) => (props.darkModeOn ? "white" : `hsl(209, 23%, 22%)`)};
 	border: none;
-	box-shadow: 3px 3px 12px lightgrey;
+	background-color: ${(props) =>
+		props.darkModeOn ? `hsl(209, 23%, 22%)` : "white"};
+
+	box-shadow: ${(props) =>
+		props.darkModeOn ? "0px 0px" : "3px 3px 12px lightgrey"};
 	border-radius: 5px;
 	.back-text {
 		margin-left: 10px;
 	}
 	:hover {
+		cursor: pointer;
+	}
+`;
+
+const BorderButtons = styled.li`
+	background-color: ${(props) =>
+		props.darkModeOn ? `hsl(209, 23%, 22%)` : "white"};
+
+	box-shadow: ${(props) =>
+		props.darkModeOn ? "0px 0px" : "3px 3px 12px lightgrey"};
+
+	.button-container {
+		display: flex;
+		flex-wrap: wrap;
+		height: 100%;
+		padding-left: 0;
+		margin-top: 10px;
+	}
+	a {
+		text-decoration: none;
+		color: inherit;
+	}
+
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 150px;
+	max-width: fit-content;
+
+	padding: 10px;
+	margin: 0px 10px 10px 0px;
+	transition: all 0.1s ease-in-out;
+	:hover {
+		transform: scale(1.1);
 		cursor: pointer;
 	}
 `;
