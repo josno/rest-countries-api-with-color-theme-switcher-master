@@ -125,7 +125,6 @@ const CountryPage = (props) => {
 
 const CountryListPageStyles = styled.main`
 	width: 100%;
-	border: 1px solid black;
 	.button-container {
 		display: flex;
 		align-items: center;
