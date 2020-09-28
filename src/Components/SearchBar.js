@@ -38,6 +38,12 @@ const SearchBarStyles = styled.div`
 
 	@media (min-width: 768px) {
 		width: 40%;
+		input {
+			font-size: 1em;
+		}
+		.search-icon {
+			transform: translate(180%, 160%) scale(1.6);
+		}
 	}
 `;
 

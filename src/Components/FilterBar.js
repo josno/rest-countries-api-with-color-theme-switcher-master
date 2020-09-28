@@ -114,6 +114,10 @@ const DropDownStyles = styled.div`
 
 	@media (min-width: 768px) {
 		width: 200px;
+		.list-label,
+		.list-containr {
+			font-size: 1em;
+		}
 	}
 `;
 

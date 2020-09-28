@@ -67,6 +67,13 @@ const HeaderStyles = styled.div`
 		margin-left: 10px;
 		color: ${(props) => (props.darkModeOn ? "white" : `hsl(209, 23%, 22%)`)};
 	}
+
+	@media (min-width: 768px) {
+		h1,
+		.mode-text {
+			font-size: 1.5em;
+		}
+	}
 `;
 
 export default Header;
