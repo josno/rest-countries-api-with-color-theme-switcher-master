@@ -6,6 +6,7 @@ import CountryListPage from "./Pages/CountryListPage";
 import CountryPage from "./Pages/CountryPage";
 import Header from "./Components/Header";
 import CountryContext from "./CountryContext";
+import Footer from "./Components/Footer";
 
 const App = () => {
 	const [darkModeOn, setDarkMode] = useState(false);
@@ -28,6 +29,7 @@ const App = () => {
 					/>
 				</Switch>
 			</AppStyles>
+			<Footer />
 		</CountryContext.Provider>
 	);
 };
