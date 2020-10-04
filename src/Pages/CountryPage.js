@@ -170,7 +170,8 @@ const CountryListPageStyles = styled.main`
 		ul {
 			padding-left: 0;
 			line-height: 2;
-			margin-top: 30px;
+			padding-top: 30px;
+			margin: 0px;
 		}
 
 		li {

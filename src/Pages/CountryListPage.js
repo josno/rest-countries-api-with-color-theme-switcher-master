@@ -43,14 +43,6 @@ const CountryListPage = (props) => {
 		}
 	}, []);
 
-	const filterName = (a, val) => {
-		const searchValue = val.toLowerCase();
-
-		const check = a.toLowerCase().slice(0, searchValue.length);
-
-		return check === searchValue;
-	};
-
 	return (
 		<CountryListPageStyles>
 			<SearchFilterSection>
@@ -67,7 +59,9 @@ const CountryListPage = (props) => {
 								? a
 								: a.region.toLowerCase() === filter.toLowerCase();
 						})
-						.filter((a) => filterName(a.name, search))
+						.filter((a) => {
+							return a.name.toLowerCase().indexOf(search.toLowerCase()) === 0;
+						})
 						.map((c, index) => {
 							return (
 								<Link key={index} className='country-link' to={`${c.name}`}>
