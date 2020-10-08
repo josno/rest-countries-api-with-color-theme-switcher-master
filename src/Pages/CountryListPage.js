@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
 import styled from "styled-components";
 import CountryItem from "../Components/CountryItem";
@@ -64,15 +63,14 @@ const CountryListPage = (props) => {
 						})
 						.map((c, index) => {
 							return (
-								<Link key={index} className='country-link' to={`${c.name}`}>
-									<CountryItem
-										flag={c.flag}
-										name={c.name}
-										region={c.region}
-										capital={c.capital}
-										population={c.population}
-									/>
-								</Link>
+								<CountryItem
+									key={index}
+									flag={c.flag}
+									name={c.name}
+									region={c.region}
+									capital={c.capital}
+									population={c.population}
+								/>
 							);
 						})}
 			</ul>
@@ -81,7 +79,7 @@ const CountryListPage = (props) => {
 };
 
 const CountryListPageStyles = styled.div`
-	font-size: 0.875rem;
+	padding: 0px 3%;
 	width: 100%;
 	ul {
 		width: 100%;
@@ -97,11 +95,6 @@ const CountryListPageStyles = styled.div`
 		align-items: center;
 	}
 
-	.country-link {
-		text-decoration: none;
-		color: inherit;
-	}
-
 	@media (min-width: 748px) {
 		ul {
 			flex-direction: row;
@@ -111,8 +104,6 @@ const CountryListPageStyles = styled.div`
 `;
 
 const SearchFilterSection = styled.div`
-	padding-left: 5%;
-	padding-right: 5%;
 	padding-top: 40px;
 	width: 100%;
 	display: flex;
@@ -123,6 +114,8 @@ const SearchFilterSection = styled.div`
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
+		max-width: 1350px;
+		margin: 0 auto;
 	} ;
 `;
 

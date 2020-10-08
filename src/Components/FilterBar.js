@@ -58,7 +58,7 @@ const DropDownStyles = styled.div`
 	width: 50%;
 	border: 1px solid black;
 	padding: 0px 10px;
-	margin: 20px;
+	margin: 30px;
 	border: 0px;
 	background: white;
 	border-radius: 5px;
@@ -72,7 +72,7 @@ const DropDownStyles = styled.div`
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		font-size: 0.8em;
+		font-size: 0.8rem;
 		padding-left: 20px;
 		height: 100%;
 	}
@@ -81,7 +81,7 @@ const DropDownStyles = styled.div`
 		border: 0;
 		border-radius: 5px;
 		height: fit-content;
-		font-size: 0.8em;
+		font-size: 1rem;
 		padding-top: 10px;
 		padding-right: 10px;
 		padding-left: 30px;
@@ -116,7 +116,7 @@ const DropDownStyles = styled.div`
 		width: 200px;
 		.list-label,
 		.list-containr {
-			font-size: 1em;
+			font-size: 1rem;
 		}
 	}
 `;

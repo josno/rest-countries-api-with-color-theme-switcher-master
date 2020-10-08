@@ -133,13 +133,17 @@ const CountryPage = (props) => {
 };
 
 const CountryListPageStyles = styled.main`
+	padding: 50px 0px;
 	width: 100%;
+	max-width: 500px;
+	margin: 0 auto;
 	.button-container {
 		display: flex;
 		align-items: center;
 		width: 100%;
 		padding-left: 5%;
-		height: 80px;
+		flex-wrap: wrap;
+		height: 100%;
 	}
 
 	.country-container {
@@ -180,11 +184,12 @@ const CountryListPageStyles = styled.main`
 	}
 
 	@media (min-width: 1200px) {
-		padding: 4% 5%;
+		padding: 5%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+		max-width: none;
 		.country-container {
 			display: flex;
 			align-items: center;

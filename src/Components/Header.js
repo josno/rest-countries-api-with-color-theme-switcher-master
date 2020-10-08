@@ -39,7 +39,7 @@ const HeaderStyles = styled.div`
 	display: flex;
 	justify-content: space-between;
 	h1 {
-		font-size: 0.975rem;
+		font-size: 1.2rem;
 		a {
 			text-decoration: none;
 			color: inherit;
@@ -66,13 +66,6 @@ const HeaderStyles = styled.div`
 	.mode-text {
 		margin-left: 10px;
 		color: ${(props) => (props.darkModeOn ? "white" : `hsl(209, 23%, 22%)`)};
-	}
-
-	@media (min-width: 768px) {
-		h1,
-		.mode-text {
-			font-size: 1.5em;
-		}
 	}
 `;
 
