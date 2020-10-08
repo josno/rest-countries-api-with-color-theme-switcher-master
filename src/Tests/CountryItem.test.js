@@ -7,7 +7,7 @@ import { shallow } from "enzyme";
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe("<SummarySection/>", () => {
+describe("CountryItem/>", () => {
 	let wrapper;
 	const testProps = {
 		flag: "https://restcountries.eu/data/blz.svg",
@@ -34,8 +34,6 @@ describe("<SummarySection/>", () => {
 	});
 
 	it("renders props as expected", () => {
-		console.log(wrapper.debug());
-		// console.log(wrapper.find("ul").childAt(2).text());
 		expect(wrapper.find("img").prop("src")).toBeTruthy();
 		expect(wrapper.find("img").prop("src")).toEqual(testProps.flag);
 		expect(wrapper.find("h1").text()).toEqual(testProps.name);

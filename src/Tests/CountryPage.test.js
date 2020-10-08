@@ -1,13 +1,13 @@
 import React from "react";
 
-import CountryPage from "../Components/CountryPage";
+import CountryPage from "../Pages/CountryPage";
 import Enzyme from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import { shallow } from "enzyme";
+import { mount } from "enzyme";
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe("<SummarySection/>", () => {
+describe.only("<CountryPage/>", () => {
 	let wrapper;
 	const testProps = {
 		flag: "https://restcountries.eu/data/blz.svg",
@@ -18,13 +18,14 @@ describe("<SummarySection/>", () => {
 	};
 
 	beforeEach(() => {
-		wrapper = shallow(
+		wrapper = mount(
 			<CountryPage
-				flag={testProps.flag}
-				name={testProps.name}
-				region={testProps.region}
-				capital={testProps.capital}
-				population={testProps.population}
+				match={{
+					params: { country: "Algeria" },
+					isExact: true,
+					path: "/:country",
+					url: "/Algeria",
+				}}
 			/>
 		);
 	});
@@ -33,20 +34,18 @@ describe("<SummarySection/>", () => {
 		wrapper.unmount();
 	});
 
-	it("renders props as expected", () => {
-		console.log(wrapper.debug());
-		// console.log(wrapper.find("ul").childAt(2).text());
-		expect(wrapper.find("img").prop("src")).toBeTruthy();
-		expect(wrapper.find("img").prop("src")).toEqual(testProps.flag);
-		expect(wrapper.find("h1").text()).toEqual(testProps.name);
-		expect(wrapper.find("ul").children().length).toEqual(3);
-		expect(wrapper.find("ul").children().first().text()).toEqual(
-			`Population: ${testProps.population
-				.toString()
-				.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}`
-		);
-		expect(wrapper.find("ul").childAt(2).text()).toEqual(
-			`Capital: ${testProps.capital}`
-		);
+	it("renders back button", () => {
+		expect(wrapper.find("Back")).toBeTruthy();
+	});
+
+	it("renders fields button", () => {
+		expect(wrapper.find("Native Name")).toBeTruthy();
+		expect(wrapper.find("Population")).toBeTruthy();
+		expect(wrapper.find("Region")).toBeTruthy();
+		expect(wrapper.find("SubRegion")).toBeTruthy();
+		expect(wrapper.find("Capital")).toBeTruthy();
+		expect(wrapper.find("Top Level Domain")).toBeTruthy();
+		expect(wrapper.find("Currencies")).toBeTruthy();
+		expect(wrapper.find("Languages")).toBeTruthy();
 	});
 });
