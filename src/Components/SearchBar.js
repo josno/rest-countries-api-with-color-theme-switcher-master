@@ -8,11 +8,11 @@ const SearchBar = ({ updateSearch }) => {
 	const context = useContext(CountryContext);
 	return (
 		<SearchBarStyles darkModeOn={context.darkModeOn}>
-			<HiSearch className='search-icon' color={"#DCDCDC"} />
+			<HiSearch className="search-icon" color={"#DCDCDC"} />
 			<input
 				onChange={(e) => updateSearch(e.target.value)}
-				type='text'
-				placeholder='Search for a country...'
+				type="text"
+				placeholder="Search for a country..."
 			/>
 		</SearchBarStyles>
 	);
@@ -24,7 +24,9 @@ const SearchBarStyles = styled.div`
 
 	.search-icon {
 		position: absolute;
-		transform: translate(180%, 120%) scale(1.5);
+		transform: scale(2);
+		left: 5%;
+		top: 35%;
 	}
 
 	input {
@@ -40,9 +42,6 @@ const SearchBarStyles = styled.div`
 		width: 40%;
 		input {
 			font-size: 1rem;
-		}
-		.search-icon {
-			transform: translate(180%, 160%) scale(1.6);
 		}
 	}
 `;

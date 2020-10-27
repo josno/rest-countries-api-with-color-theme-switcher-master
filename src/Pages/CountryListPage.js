@@ -103,7 +103,7 @@ const CountryListPageStyles = styled.div`
 	}
 
 	@media (min-width: 1000px) {
-		ul {
+		.flex-center {
 			justify-content: space-between;
 		}
 	}
@@ -120,8 +120,6 @@ const SearchFilterSection = styled.div`
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
-		max-width: 1350px;
-		margin: 0 auto;
 	} ;
 `;
 
