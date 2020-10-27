@@ -12,6 +12,8 @@ const SearchBar = ({ updateSearch }) => {
 			<input
 				onChange={(e) => updateSearch(e.target.value)}
 				type="text"
+				name="Country Search"
+				htmlFor="Search"
 				placeholder="Search for a country..."
 			/>
 		</SearchBarStyles>

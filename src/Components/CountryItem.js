@@ -8,24 +8,28 @@ import CountryContext from "../CountryContext";
 const CountryItem = ({ name, region, population, capital, flag }) => {
 	const context = useContext(CountryContext);
 
+	const urlifyStr = (str) => {
+		return str.toLowerCase().replace(/ /g, "%20");
+	};
+
 	return (
 		<CountryItemStyles darkModeOn={context.darkModeOn}>
-			<Link className='country-link' to={`${name}`}>
-				<div className='img-container'>
+			<Link className="country-link" to={`${urlifyStr(name)}`}>
+				<div className="img-container">
 					<img src={flag} alt={`${name}=flag`} />
 				</div>
 				<DetailContainer darkModeOn={context.darkModeOn}>
 					<h1>{name}</h1>
-					<ul className='details-list-container'>
+					<ul className="details-list-container">
 						<li>
-							<span className='bold'>Population:</span>{" "}
+							<span className="bold">Population:</span>{" "}
 							{Format.number(population)}
 						</li>
 						<li>
-							<span className='bold'>Region:</span> {region}
+							<span className="bold">Region:</span> {region}
 						</li>
 						<li>
-							<span className='bold'>Capital:</span> {capital}
+							<span className="bold">Capital:</span> {capital}
 						</li>
 					</ul>
 				</DetailContainer>
