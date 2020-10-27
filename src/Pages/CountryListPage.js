@@ -49,7 +49,7 @@ const CountryListPage = (props) => {
 				<FilterBar getFilterValue={(str) => updateFilter(str)} />
 			</SearchFilterSection>
 			{error && <p>{error}</p>}
-			<ul className='flex-center'>
+			<ul className="flex-center">
 				{countries.length > 0 &&
 					!error &&
 					countries
@@ -99,6 +99,12 @@ const CountryListPageStyles = styled.div`
 		ul {
 			flex-direction: row;
 			flex-wrap: wrap;
+		}
+	}
+
+	@media (min-width: 1000px) {
+		ul {
+			justify-content: space-between;
 		}
 	}
 `;
