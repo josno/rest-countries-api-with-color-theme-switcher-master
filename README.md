@@ -1,4 +1,4 @@
-# Challenge Complete! See it [here](https://rest-countries-api-with-color-theme-switcher-master-jp789i4sr.vercel.app/)
+# Challenge Complete! See it [here](https://rest-countries-js.vercel.app/)
 
 # Hello :wave: this is a REST Countries API Project
 
