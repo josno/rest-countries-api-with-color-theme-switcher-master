@@ -25,7 +25,7 @@ const SearchBarStyles = styled.div`
 	.search-icon {
 		position: absolute;
 		transform: scale(2);
-		left: 5%;
+		left: 25px;
 		top: 35%;
 	}
 
